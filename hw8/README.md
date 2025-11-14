@@ -42,13 +42,13 @@
      terraform init
      ```
 
-2. Посмотрите план
+2. Посмотр плана
 
      ```bash
      terraform plan
      ```
 
-3. Создайте ресурсы
+3. Создание ресурсов
 
      ```bash
      terraform apply
