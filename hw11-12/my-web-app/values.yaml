@@ -1,0 +1,66 @@
+backend:
+  deployment:
+    name: deployment-backend
+    port: 5000
+  enabled: true
+  replicaCount: 4
+  service:
+    name: backend-service
+    port: 5000
+  labels:
+    name: backend
+  container:
+    name: container-backend
+    image:
+      name: digitalocean/flask-helloworld
+      tag: latest
+  livenessProbe:
+    httpGet:
+      path: /
+      port: 5000
+    initialDelaySeconds: 3
+    periodSeconds: 3
+  readinessProbe:
+    httpGet:
+      path: /
+      port: 5000
+    initialDelaySeconds: 5
+    periodSeconds: 3
+
+
+frontend:
+  deployment:
+    name: deployment-frontend
+    port: 80
+  enabled: true
+  replicaCount: 4
+  service:
+    name: frontend-service
+    port: 80
+  labels:
+    name: frontend
+  container:
+    name: container-frontend
+    image:
+      name: nginx
+      tag: latest
+  livenessProbe:
+    httpGet:
+      path: /
+      port: 80
+    initialDelaySeconds: 3
+    periodSeconds: 3
+  readinessProbe:
+    httpGet:
+      path: /
+      port: 80
+    initialDelaySeconds: 5
+    periodSeconds: 3
+
+configmap:
+  name: nginx-conf
+
+ingress:
+  enabled: true
+  className: "nginx"
+  name: main-ingress

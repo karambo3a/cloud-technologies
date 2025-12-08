@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.backend.deployment.name }}
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      name: {{ .Values.backend.labels.name }}
+  template:
+    metadata:
+      labels:
+        name: {{ .Values.backend.labels.name }}
+    spec:
+      containers:
+        - name: {{ .Values.backend.container.name }}
+          image: "{{ .Values.backend.container.image.name }}:{{ .Values.backend.container.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.backend.deployment.port }}
+          livenessProbe:
+            {{- toYaml .Values.backend.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.backend.readinessProbe | nindent 12 }}
