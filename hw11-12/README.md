@@ -21,3 +21,19 @@ kubectl apply -f ingress.yaml
 ```
 
 Запросы к `http://<EXTERNAL_IP>/`, `http://<EXTERNAL_IP>/api` и `http://<EXTERNAL_IP>/health` можно использовать для проверки доступности приложения.
+
+### Развертывание через Helm
+
+Для развертывания кластера используйте команду
+
+```shell
+helm install my-release ./my-web-app -n production --create-namespace
+```
+
+Для обновления кластера используйте команду
+
+```shell
+helm upgrade my-release ./my-web-app -n production --create-namespace
+```
+
+Запросы к `http://<EXTERNAL_IP>/`, `http://<EXTERNAL_IP>/api` и `http://<EXTERNAL_IP>/health` можно использовать для проверки доступности приложения.
