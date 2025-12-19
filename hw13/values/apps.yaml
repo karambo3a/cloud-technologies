@@ -1,0 +1,6 @@
+spec:
+    source:
+        repoURL: https://cloudtech.gitlab.yandexcloud.net/hw13-group/hw13.git
+        targetRevision: HEAD
+    destination:
+        server: https://kubernetes.default.svc
